@@ -34,8 +34,6 @@ public class AndroidMeActivity extends AppCompatActivity {
     private int bodyIndex = 0;
     private int legIndex = 0;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
