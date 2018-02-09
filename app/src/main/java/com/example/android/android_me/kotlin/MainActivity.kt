@@ -8,8 +8,9 @@ import android.widget.Button
 import android.widget.GridView
 import com.example.android.android_me.R
 import com.example.android.android_me.data.AndroidImageAssets
+import com.example.android.android_me.kotlin.MasterListFragment.OnImageClickListener
 
-class MainActivity : AppCompatActivity(), MasterListFragment.OnImageClickListener {
+class MainActivity : AppCompatActivity(), OnImageClickListener {
 
     companion object {
         private val HEAD: Int = 0

@@ -10,7 +10,7 @@
         android:layout_width="400dp"
         android:layout_height="match_parent"
         android:id="@+id/master_list_fragment"
-        android:name="com.example.android.android_me.ui.MasterListFragment" />
+        android:name="com.example.android.android_me.kotlin.MasterListFragment" />
 
     <View
         android:layout_width="1dp"

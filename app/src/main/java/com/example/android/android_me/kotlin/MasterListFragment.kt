@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import com.example.android.android_me.R
+import com.example.android.android_me.data.AndroidImageAssets
 
 class MasterListFragment : Fragment() {
 
@@ -27,6 +28,7 @@ class MasterListFragment : Fragment() {
         val gridView: GridView = rootView.findViewById(R.id.images_grid_view) as GridView
 
         gridView.onItemClickListener = ImageGridViewClickListener()
+        gridView.adapter = MasterListAdapter(context, AndroidImageAssets.getAll())
 
         return rootView
     }
