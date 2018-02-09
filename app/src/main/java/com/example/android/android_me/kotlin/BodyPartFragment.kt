@@ -42,6 +42,14 @@ class BodyPartFragment : Fragment() {
         outState.putInt(LIST_INDEX, listIndex)
     }
 
+    fun setImageIds(imageIds: List<Int>) {
+        this.imageIds = imageIds
+    }
+
+    fun setListIndex(listIndex: Int) {
+        this.listIndex = listIndex
+    }
+
     private inner class ImageViewClickListener: View.OnClickListener {
         override fun onClick(view: View?) {
             imageView.setImageResource(imageIds.get(listIndex))
