@@ -31,6 +31,8 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
+        if (savedInstanceState != null) { return; }
+
         BodyPartFragment headFragment = new BodyPartFragment();
         headFragment.setImageIds(AndroidImageAssets.getHeads());
         headFragment.setListIndex(0);
