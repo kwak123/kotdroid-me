@@ -10,9 +10,9 @@ import com.example.android.android_me.R
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val HEAD: Int = 0
-        const val BODY: Int = 1
-        const val LEG: Int = 2
+        private val HEAD: Int = 0
+        private val BODY: Int = 1
+        private val LEG: Int = 2
     }
 
     var headIndex: Int = 0
