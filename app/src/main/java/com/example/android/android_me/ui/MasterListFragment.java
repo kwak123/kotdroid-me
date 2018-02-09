@@ -1,17 +1,25 @@
 package com.example.android.android_me.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.android.android_me.R;
 import com.example.android.android_me.data.AndroidImageAssets;
 
 public class MasterListFragment extends Fragment {
+
+    OnImageClickListener imageClickListener;
+
+    public interface OnImageClickListener {
+        void onImageSelected(int imagePosition);
+    }
 
     public MasterListFragment() {}
 
@@ -22,6 +30,24 @@ public class MasterListFragment extends Fragment {
         GridView gridView = (GridView) rootView.findViewById(R.id.images_grid_view);
         gridView.setAdapter(new MasterListAdapter(getContext(), AndroidImageAssets.getAll()));
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                imageClickListener.onImageSelected(position);
+            }
+        });
+
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            imageClickListener = (OnImageClickListener) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "must implement OnImageClickListener interface");
+        }
     }
 }

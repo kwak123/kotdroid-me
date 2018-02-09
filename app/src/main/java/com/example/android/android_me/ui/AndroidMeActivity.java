@@ -26,24 +26,39 @@ import com.example.android.android_me.data.AndroidImageAssets;
 // This activity will display a custom Android image composed of three body parts: head, body, and legs
 public class AndroidMeActivity extends AppCompatActivity {
 
+    public static final String HEAD_TAG = "headIndex";
+    public static final String BODY_TAG = "bodyIndex";
+    public static final String LEG_TAG = "legIndex";
+
+    private int headIndex = 0;
+    private int bodyIndex = 0;
+    private int legIndex = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
-        if (savedInstanceState != null) { return; }
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            headIndex = bundle.getInt(HEAD_TAG);
+            bodyIndex = bundle.getInt(BODY_TAG);
+            legIndex = bundle.getInt(LEG_TAG);
+        }
 
         BodyPartFragment headFragment = new BodyPartFragment();
         headFragment.setImageIds(AndroidImageAssets.getHeads());
-        headFragment.setListIndex(0);
+        headFragment.setListIndex(headIndex);
 
         BodyPartFragment bodyFragment = new BodyPartFragment();
         bodyFragment.setImageIds(AndroidImageAssets.getBodies());
-        bodyFragment.setListIndex(0);
+        bodyFragment.setListIndex(bodyIndex);
 
         BodyPartFragment legFragment = new BodyPartFragment();
         legFragment.setImageIds(AndroidImageAssets.getLegs());
-        legFragment.setListIndex(0);
+        legFragment.setListIndex(legIndex);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -51,5 +66,12 @@ public class AndroidMeActivity extends AppCompatActivity {
                 .add(R.id.body_container, bodyFragment)
                 .add(R.id.leg_container, legFragment)
                 .commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(HEAD_TAG, headIndex);
+        outState.putInt(BODY_TAG, bodyIndex);
+        outState.putInt(LEG_TAG, legIndex);
     }
 }
